@@ -1,8 +1,8 @@
 'use strict';
 
 
-var mongoose = require('mongoose'),
-  Contact = mongoose.model('Contacts');
+const mongoose = require('mongoose'),
+  Contact = mongoose.model('Contact');
 
 exports.list_all_contacts = function(req, res) {
   Contact.find({}, function(err, contacts) {

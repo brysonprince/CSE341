@@ -1,1 +1,1 @@
-web: node contacts.js
+web: node server.js

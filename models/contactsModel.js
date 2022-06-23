@@ -26,4 +26,4 @@ var ContactSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Contacts', ContactSchema);
+module.exports = mongoose.model('Contact', ContactSchema);

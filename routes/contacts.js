@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(app) {
-  var contacts = require('../controllers/contactsController');
+  const contacts = require('../controllers/contactsController');
 
   // contacts Routes
   app.route('/contacts')
