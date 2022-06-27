@@ -20,7 +20,7 @@ mongodb.initDb((err, mongodb) => {
     }
     else{
         app.listen(port, () => {
-            console.log(`Contacts app listening on port ${port}`)
+            console.log(`Connected to DB and listening on port ${port}`)
         });
     }
 });
