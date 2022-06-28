@@ -1,4 +1,12 @@
+//LOCALHOST
+###
 GET http://localhost:3000
-
-
+###
 GET http://localhost:3000/62a91fb6a68e765b249a6e7a
+
+//HEROKU
+###
+https://cse341-brysonpr.herokuapp.com
+
+###
+https://cse341-brysonpr.herokuapp.com/62a91fb6a68e765b249a6e7a
