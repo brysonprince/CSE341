@@ -1,15 +1,7 @@
-'use strict';
-module.exports = function(app) {
-  const contacts = require('../controllers/contactsController');
+const routes = require('express').Router();
 
-  // contacts Routes
-  app.route('/contacts')
-    .get(contacts.list_all_contacts)
-    .post(contacts.create_a_contact);
+const contactsController = require('../controllers/contactsController');
 
+routes.get('/', contactsController.getAll);
 
-  app.route('/contacts/:contactId')
-    .get(contacts.read_a_contact)
-    .put(contacts.update_a_contact)
-    .delete(contacts.delete_a_contact);
-};
+module.exports = routes;
