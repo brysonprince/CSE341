@@ -19,7 +19,7 @@ const getContact = async (req, res) => {
   });
 }
 
-const addContact = async (req, res) => {
+/*const addContact = async (req, res) => {
   const contact = createContact(req, res);
   const result = await mongodb.getDb.db().collection('contacts').insertOne(contact);
   if(result.acknowledged) {
@@ -64,12 +64,9 @@ function createContact (req, res) {
     birthday: req.body.birthday,
   }
   return contact
-}
+}*/
 
 module.exports = { 
   getAll,
-  getContact,
-  addContact,
-  updateContact,
-  removeContact
+  getContact
 };
