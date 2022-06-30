@@ -19,9 +19,9 @@ const getContact = async (req, res) => {
   });
 }
 
-/*const addContact = async (req, res) => {
+const addContact = async (req, res) => {
   const contact = createContact(req, res);
-  const result = await mongodb.getDb.db().collection('contacts').insertOne(contact);
+  const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
   if(result.acknowledged) {
     res.status(201).send();
   }
@@ -33,7 +33,7 @@ const getContact = async (req, res) => {
 const updateContact = async (req, res) => {
   const contactId = new ObjectId(req.params.id);
   const contact = createContact(req, res);
-  const result = await mongodb.getDb.db().collection('contacts').replaceOne({ _id: contactId }, contact);
+  const result = await mongodb.getDb().db().collection('contacts').replaceOne({ _id: contactId }, contact);
   if(result.modifiedCount > 0) {
     res.status(200).send();
   }
@@ -45,8 +45,8 @@ const updateContact = async (req, res) => {
 const removeContact = async (req, res) => {
   const contactId = new ObjectId(req.params.id);
   const contact = createContact(req, res);
-  const result = await mongodb.getDb.db().collection('contacts').remove({ _id: contactId }, contact);
-  if(result.modifiedCount > 0) {
+  const result = await mongodb.getDb().db().collection('contacts').deleteOne({ _id: contactId }, contact);
+  if(result.deletedCount > 0) {
     res.status(200).send();
   }
   else {
@@ -64,9 +64,12 @@ function createContact (req, res) {
     birthday: req.body.birthday,
   }
   return contact
-}*/
+}
 
 module.exports = { 
   getAll,
-  getContact
+  getContact,
+  addContact,
+  updateContact,
+  removeContact
 };
