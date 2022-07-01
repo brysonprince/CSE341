@@ -6,7 +6,7 @@ const doc = {
         description: 'API for interfacing with my contacts database for CSE341',
     },
     host: 'cse341-brysonpr.herokuapp.com',
-    schemes: ['http'],
+    schemes: ['https'],
 };
 
 const outputFile = './swagger.json';

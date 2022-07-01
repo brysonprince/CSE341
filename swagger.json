@@ -8,7 +8,7 @@
   "host": "cse341-brysonpr.herokuapp.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api-docs": {
