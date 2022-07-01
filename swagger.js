@@ -5,7 +5,7 @@ const doc = {
         title: 'Contacts API',
         description: 'API for interfacing with my contacts database for CSE341',
     },
-    host: 'localhost:3000',
+    host: 'cse341-brysonpr.herokuapp.com',
     schemes: ['http'],
 };
 
