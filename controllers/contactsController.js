@@ -15,7 +15,7 @@ const getContact = async (req, res) => {
   const result = await mongodb.getDb().db().collection('contacts').find({ _id: contactId });
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists[0]);
+    res.status(204).json(lists[0]);
   });
 }
 
@@ -23,7 +23,7 @@ const addContact = async (req, res) => {
   const contact = createContact(req, res);
   const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
   if(result.acknowledged) {
-    res.status(201).send();
+    res.status(204).send();
   }
   else {
     res.status(500).json(result.error || 'An error was encountered while adding the contact');

@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "swagger": "node ./swagger.js",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -24,10 +26,16 @@
     "express": "^4.18.1",
     "heroku": "^7.60.2",
     "mongodb": "^4.7.0",
-    "mongoose": "^6.4.0"
+    "swagger-ui-express": "^4.4.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.7.1",
+    "swagger-autogen": "^2.21.4"
   },
   "engines": {
     "node": "14.18.0",
