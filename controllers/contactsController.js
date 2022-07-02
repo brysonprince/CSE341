@@ -31,9 +31,9 @@ const getContact = async (req, res) => {
 
 // Try blocks in the next three were causing errors with react app
 const addContact = async (req, res) => {
-  const contactId = ObjectId();
-  const contact = createContact(req, contactId);
+  let contact = createContact(req);
   const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
+  contact._id = result.insertedId;
   if(result.acknowledged) {
     res.status(201).json(result);
   }
@@ -44,7 +44,7 @@ const addContact = async (req, res) => {
 
 const updateContact = async (req, res) => {
   const contactId = new ObjectId(req.params.id);
-  const contact = createContact(req, contactId);
+  const contact = createContact(req);
   const result = await mongodb.getDb().db().collection('contacts').replaceOne({ _id: contactId }, contact);
   if(result.modifiedCount > 0) {
     res.status(204).send();
@@ -66,9 +66,8 @@ const removeContact = async (req, res) => {
 }
 
 // Not exported, just a helper
-function createContact (req, contactId) {
+function createContact (req) {
   const contact = {
-    _id: contactId,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
