@@ -34,7 +34,7 @@ const addContact = async (req, res) => {
   const contact = createContact(req);
   const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
   if(result.acknowledged) {
-    res.status(201).send();
+    res.status(201).json(result);
   }
   else {
     res.status(500).json(result.error || 'Error adding contact');
@@ -62,7 +62,7 @@ const removeContact = async (req, res) => {
   else {
     res.status(500).json(result.error || 'An error was encountered while deleting the contact');
   }
-  }
+}
 
 // Not exported, just a helper
 function createContact (req) {
@@ -72,8 +72,8 @@ function createContact (req) {
     email: req.body.email,
     birthday: req.body.birthday,
     favoriteColor: req.body.favoriteColor
-  }
-  return contact
+  };
+  return contact;
 }
 
 module.exports = { 
