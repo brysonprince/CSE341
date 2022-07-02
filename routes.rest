@@ -1,21 +1,21 @@
 //LOCALHOST
 ###
-GET http://localhost:3000
+GET http://localhost:3000/contacts
 ###
-GET http://localhost:3000/62a91fb6a68e765b249a6e7a
+GET http://localhost:3000/contacts/62bfbc9b9cab67d019307af0
 ###
-POST http://localhost:3000 HTTP/1.1
+POST http://localhost:3000/contacts HTTP/1.1
 Content-Type: application/json
 
 {
-    "firstname":"Bryson",
-    "lastname":"Prince",
+    "firstName":"Bryson",
+    "lastName":"Prince",
     "email":"bryson.prince@fake.com",
-    "color":"Blue",
-    "birthday":"01/21/1995"
+    "birthday":"01/21/1995",
+    "favoriteColor":"Blue"
 }
 ###
-PUT http://localhost:3000/62bdfa86b1cdddb04c77b378 HTTP/1.1
+PUT http://localhost:3000/contacts/62bdfa86b1cdddb04c77b378 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -27,14 +27,14 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/62bdfa86b1cdddb04c77b378 HTTP/1.1
+DELETE http://localhost:3000/contacts/62bdfa86b1cdddb04c77b378 HTTP/1.1
 
 //HEROKU
 ### get all contacts
-GET https://cse341-brysonpr.herokuapp.com
+GET https://cse341-brysonpr.herokuapp.com/contacts
 
 ### get one contact
-GET https://cse341-brysonpr.herokuapp.com/62a91fb6a68e765b249a6e7a
+GET https://cse341-brysonpr.herokuapp.com/contacts/62a91fb6a68e765b249a6e7a
 
 ### create a new contact
 POST https://cse341-brysonpr.herokuapp.com/contacts HTTP/1.1
@@ -48,7 +48,7 @@ Content-Type: application/json
     "favoriteColor": "blue"
 }
 ### update a contact (need to change the object id to test)
-PUT https://cse341-brysonpr.herokuapp.com/62bf85b67cec14719a94dfc4 HTTP/1.1
+PUT https://cse341-brysonpr.herokuapp.com/contacts/62bf85b67cec14719a94dfc4 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -60,4 +60,4 @@ Content-Type: application/json
 }
 
 ### delete a contact (need to change the object id to test)
-DELETE https://cse341-brysonpr.herokuapp.com/add-id-here HTTP/1.1
+DELETE https://cse341-brysonpr.herokuapp.com/contacts/add-id-here HTTP/1.1
