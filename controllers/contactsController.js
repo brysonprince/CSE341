@@ -82,11 +82,11 @@ const removeContact = async (req, res) => {
 // Not exported, just a helper
 function createContact (req) {
   const contact = {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
+    firstName: req.body.firstname,
+    lastName: req.body.lastname,
     email: req.body.email,
-    favoriteColor: req.body.color,
     birthday: req.body.birthday,
+    favoriteColor: req.body.color
   }
   return contact
 }
