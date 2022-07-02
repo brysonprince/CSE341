@@ -68,7 +68,7 @@ const removeContact = async (req, res) => {
 // Not exported, just a helper
 function createContact (req) {
   const contact = {
-    firstName: req.body.firstName,
+    firstName: "test",
     lastName: req.body.lastName,
     email: req.body.email,
     birthday: req.body.birthday,
