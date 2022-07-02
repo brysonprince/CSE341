@@ -12,7 +12,7 @@ const getAll = async (req, res) => {
   }
   catch (error) {
     res.status(500).json(error);
-  }
+  };
 };
 
 const getContact = async (req, res) => {
@@ -27,43 +27,58 @@ const getContact = async (req, res) => {
   catch (error) {
     res.status(500).json(error);
   }
-}
+};
 
 // Try blocks in the next three were causing errors with react app
 const createContact = async (req, res) => {
-  let contact = buildContact(req);
-  const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
-  contact._id = result.insertedId;
-  if(result.acknowledged) {
-    res.status(201).json(result);
+  try {
+    let contact = buildContact(req);
+    const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
+    contact._id = result.insertedId;
+    if(result.acknowledged) {
+      res.status(201).json(result);
+    }
+    else {
+      res.status(500).json(result.error || 'Error adding contact');
+    }
   }
-  else {
+  catch (error) {
     res.status(500).json(result.error || 'Error adding contact');
-  }
-}
+  };
+};
 
 const updateContact = async (req, res) => {
-  const contactId = new ObjectId(req.params.id);
-  const contact = buildContact(req);
-  const result = await mongodb.getDb().db().collection('contacts').replaceOne({ _id: contactId }, contact);
-  if(result.modifiedCount > 0) {
-    res.status(204).send();
+  try {
+    const contactId = new ObjectId(req.params.id);
+    const contact = buildContact(req);
+    const result = await mongodb.getDb().db().collection('contacts').replaceOne({ _id: contactId }, contact);
+    if(result.modifiedCount > 0) {
+      res.status(204).send();
+    }
+    else {
+      res.status(500).json(result.error || 'Error updating contact');
+    }
   }
-  else {
-    res.status(500).json(result.error || 'Error updating contact');
-  }
-}
+  catch (error) {
+    res.status(500).json(result.error || 'Error adding contact');
+  };
+};
 
 const removeContact = async (req, res) => {
-  const contactId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('contacts').deleteOne({ _id: contactId });
-  if(result.deletedCount > 0) {
-    res.status(204).send();
+  try {
+    const contactId = new ObjectId(req.params.id);
+    const result = await mongodb.getDb().db().collection('contacts').deleteOne({ _id: contactId });
+    if(result.deletedCount > 0) {
+      res.status(204).send();
+    }
+    else {
+      res.status(500).json(result.error || 'An error was encountered while deleting the contact');
+    }
   }
-  else {
-    res.status(500).json(result.error || 'An error was encountered while deleting the contact');
-  }
-}
+  catch (error) {
+    res.status(500).json(result.error || 'Error adding contact');
+  };
+};
 
 // Not exported, just a helper
 function buildContact (req) {
