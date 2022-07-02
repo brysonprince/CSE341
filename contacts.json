@@ -3,21 +3,21 @@
         "firstName": "Emmie",
         "lastName": "Prince",
         "email": "emmie.prince@fake.com",
-        "color": "green",
-        "birthday": "9/28/94"
+        "birthday": "9/28/94",
+        "favoriteColor": "green"
     },
     "contact2": {
         "firstName": "Ronin",
         "lastName": "Prince",
         "email": "ronin.prince@fake.com",
-        "color": "blue",
-        "birthday": "4/24/20"
+        "birthday": "4/24/20",
+        "favoriteColor": "blue"
     },
     "contact3": {
         "firstName": "Mickey",
         "lastName": "Mouse",
         "email": "mickey.mouse@fake.com",
-        "color": "red",
-        "birthday": "11/18/28"
+        "birthday": "11/18/28",
+        "favoriteColor": "red"
     }
 }
