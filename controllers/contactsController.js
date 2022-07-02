@@ -33,7 +33,6 @@ const getContact = async (req, res) => {
 const createContact = async (req, res) => {
   let contact = createContact(req);
   const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
-  contact._id = result.insertedId;
   if(result.acknowledged) {
     res.status(201).json(result);
   }
