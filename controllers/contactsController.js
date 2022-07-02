@@ -31,7 +31,7 @@ const getContact = async (req, res) => {
 
 // Try blocks in the next three were causing errors with react app
 const addContact = async (req, res) => {
-  const contactId = new ObjectId();
+  const contactId = ObjectId();
   const contact = createContact(req, contactId);
   const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
   if(result.acknowledged) {
