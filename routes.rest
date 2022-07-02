@@ -37,15 +37,15 @@ GET https://cse341-brysonpr.herokuapp.com
 GET https://cse341-brysonpr.herokuapp.com/62a91fb6a68e765b249a6e7a
 
 ### create a new contact
-POST https://cse341-brysonpr.herokuapp.com HTTP/1.1
+POST https://cse341-brysonpr.herokuapp.com/contacts HTTP/1.1
 Content-Type: application/json
 
 {
-    "firstname":"Bryson",
-    "lastname":"Prince",
+    "firstName":"Bryson",
+    "lastName":"Prince",
     "email":"bryson.prince@fake.com",
-    "color":"Blue",
-    "birthday":"01/21/1995"
+    "birthday":"01/21/1995",
+    "favoriteColor": "blue"
 }
 ### update a contact (need to change the object id to test)
 PUT https://cse341-brysonpr.herokuapp.com/62bf85b67cec14719a94dfc4 HTTP/1.1
