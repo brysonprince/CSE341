@@ -30,7 +30,7 @@ const getContact = async (req, res) => {
 }
 
 // Try blocks in the next three were causing errors with react app
-const addContact = async (req, res) => {
+const createContact = async (req, res) => {
   let contact = createContact(req);
   const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
   contact._id = result.insertedId;
@@ -66,9 +66,9 @@ const removeContact = async (req, res) => {
 }
 
 // Not exported, just a helper
-function createContact (req) {
+function buildContact (req) {
   const contact = {
-    firstName: "test",
+    firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
     birthday: req.body.birthday,
@@ -80,7 +80,7 @@ function createContact (req) {
 module.exports = { 
   getAll,
   getContact,
-  addContact,
+  createContact,
   updateContact,
   removeContact
 };
