@@ -2,7 +2,7 @@ const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 
-const getAll = async (req, res, next) => {
+const getAll = async (req, res) => {
   try {
     const result = await mongodb.getDb().db().collection('contacts').find();
     result.toArray().then((lists) => {
@@ -31,7 +31,7 @@ const getContact = async (req, res) => {
 
 const addContact = async (req, res) => {
   try{
-    const contact = createContact(req, res);
+    const contact = createContact(req);
     const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
     if(result.acknowledged) {
       res.status(201).send();
@@ -65,8 +65,7 @@ const updateContact = async (req, res) => {
 const removeContact = async (req, res) => {
   try {
     const contactId = new ObjectId(req.params.id);
-    const contact = createContact(req);
-    const result = await mongodb.getDb().db().collection('contacts').deleteOne({ _id: contactId }, contact);
+    const result = await mongodb.getDb().db().collection('contacts').deleteOne({ _id: contactId });
     if(result.deletedCount > 0) {
       res.status(204).send();
     }

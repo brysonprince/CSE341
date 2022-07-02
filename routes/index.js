@@ -1,6 +1,6 @@
 const routes = require('express').Router();
 
-routes.use('/contacts', require('./swagger'));
+routes.use('/', require('./swagger'));
 routes.use('/contacts', require('./contacts'));
 
 module.exports = routes;
