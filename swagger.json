@@ -20,14 +20,14 @@
     },
     "/contacts/": {
       "get": {
-        "description": "",
+        "description": "Gets all Contacts",
         "produces": [
           "application/json"
         ],
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful Get Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -35,11 +35,49 @@
         }
       },
       "post": {
-        "description": "",
-        "parameters": [],
+        "description": "Adds a new Contact",
+        "parameters": [
+          {
+            "name": "Contact",
+            "in": "body",
+            "description": "New Contact",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "Bryson"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Prince"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "bryson.prince@fake.com"
+                },
+                "birthday": {
+                  "type": "string",
+                  "example": "01/21/1995"
+                },
+                "favoriteColor": {
+                  "type": "string",
+                  "example": "blue"
+                }
+              },
+              "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "birthday",
+                "favoriteColor"
+              ]
+            }
+          }
+        ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Contact successfully added"
           },
           "500": {
             "description": "Internal Server Error"
@@ -49,7 +87,7 @@
     },
     "/contacts/{id}": {
       "get": {
-        "description": "",
+        "description": "Gets one Contact",
         "produces": [
           "application/json"
         ],
@@ -63,7 +101,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful Get Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -71,18 +109,55 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "Updates an existing Contact",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "Contact",
+            "in": "body",
+            "description": "New Contact Update",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "Bryson"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Prince"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "new.email@fake.com"
+                },
+                "birthday": {
+                  "type": "string",
+                  "example": "01/21/1995"
+                },
+                "favoriteColor": {
+                  "type": "string",
+                  "example": "blue"
+                }
+              },
+              "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "birthday",
+                "favoriteColor"
+              ]
+            }
           }
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Contact updated"
           },
           "500": {
             "description": "Internal Server Error"
@@ -90,7 +165,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "Removes a Contact",
         "parameters": [
           {
             "name": "id",
@@ -101,7 +176,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Contact removed"
           },
           "500": {
             "description": "Internal Server Error"

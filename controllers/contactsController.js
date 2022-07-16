@@ -3,6 +3,11 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 const getAll = async (req, res) => {
+  /*  
+  #swagger.description = 'Gets all Contacts'
+  #swagger.responses[200] = { description: 'Successful Get Request' }
+  #swagger.responses[500] = { description: 'Internal Server Error' }
+  */
   try {
     const result = await mongodb.getDb().db().collection('contacts').find();
     result.toArray().then((lists) => {
@@ -16,6 +21,11 @@ const getAll = async (req, res) => {
 };
 
 const getContact = async (req, res) => {
+  /*  
+  #swagger.description = 'Gets one Contact'
+  #swagger.responses[200] = { description: 'Successful Get Request' }
+  #swagger.responses[500] = { description: 'Internal Server Error' }
+  */
   try{
     const contactId = new ObjectId(req.params.id);
     const result = await mongodb.getDb().db().collection('contacts').find({ _id: contactId });
@@ -29,8 +39,23 @@ const getContact = async (req, res) => {
   }
 };
 
-// Try blocks in the next three were causing errors with react app
 const createContact = async (req, res) => {
+  /*  
+  #swagger.description = 'Adds a new Contact'
+  #swagger.parameters['Contact'] = {
+    in: 'body',
+    description: 'New Contact',
+    schema: {
+      $firstName: 'Bryson',
+      $lastName: 'Prince',
+      $email: 'bryson.prince@fake.com',
+      $birthday: '01/21/1995',
+      $favoriteColor: 'blue'
+    }
+  }
+  #swagger.responses[201] = { description: 'Contact successfully added' }
+  #swagger.responses[500] = { description: 'Internal Server Error' }
+  */
   try {
     let contact = buildContact(req);
     const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
@@ -47,6 +72,22 @@ const createContact = async (req, res) => {
 };
 
 const updateContact = async (req, res) => {
+  /*  
+  #swagger.description = 'Updates an existing Contact'
+  #swagger.parameters['Contact'] = {
+    in: 'body',
+    description: 'New Contact Update',
+    schema: {
+      $firstName: 'Bryson',
+      $lastName: 'Prince',
+      $email: 'new.email@fake.com',
+      $birthday: '01/21/1995',
+      $favoriteColor: 'blue'
+    }
+  }
+  #swagger.responses[204] = { description: 'Contact updated' }
+  #swagger.responses[500] = { description: 'Internal Server Error' }
+  */
   try {
     const contactId = new ObjectId(req.params.id);
     const contact = buildContact(req);
@@ -64,6 +105,11 @@ const updateContact = async (req, res) => {
 };
 
 const removeContact = async (req, res) => {
+  /*  
+  #swagger.description = 'Removes a Contact'
+  #swagger.responses[204] = { description: 'Contact removed' }
+  #swagger.responses[500] = { description: 'Internal Server Error' }
+  */
   try {
     const contactId = new ObjectId(req.params.id);
     const result = await mongodb.getDb().db().collection('contacts').deleteOne({ _id: contactId });
